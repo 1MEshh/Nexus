@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build, Test & Security Audit (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        node-version: [20.x, 22.x]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Compile TypeScript & Run Unit/Integration Tests
+        run: npm test
+
+      - name: Execute CLI Smoke Test on Hybrid Enterprise Graph
+        run: node ./dist/src/cli.js --input samples/ad-hybrid-enterprise.json --mode stealth --top-chokepoints 5
+
+      - name: Run Zero-Leak & Static Security Audit Gate
+        shell: bash
+        run: ./scripts/security-audit.sh

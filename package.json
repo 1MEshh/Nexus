@@ -1,0 +1,45 @@
+{
+  "name": "shadow-graph",
+  "version": "1.0.0",
+  "description": "Multi-domain identity attack path analyzer, Shadow Admin enumerator, and remediation chokepoint engine across Active Directory, Cloud IAM, and Kubernetes RBAC.",
+  "type": "module",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "bin": {
+    "shadow-graph": "./dist/src/cli.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test dist/tests/graph-engine.test.js dist/tests/security/leak-scanner.test.js",
+    "audit:security": "bash ./scripts/security-audit.sh",
+    "start": "node ./dist/src/cli.js"
+  },
+  "keywords": [
+    "active-directory",
+    "bloodhound",
+    "aws-iam",
+    "kubernetes-rbac",
+    "attack-graph",
+    "dijkstra",
+    "betweenness-centrality",
+    "shadow-admins",
+    "tier-zero",
+    "security"
+  ],
+  "author": "1MEshh <152591660+1MEshh@users.noreply.github.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1MEshh/Nexus.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  }
+}

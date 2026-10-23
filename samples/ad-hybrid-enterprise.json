@@ -1,0 +1,686 @@
+{
+  "metadata": {
+    "name": "ACME Global Hybrid Enterprise (AD + EKS + AWS IAM)",
+    "version": "2026.10",
+    "collectedAt": "2026-10-23T22:00:00Z",
+    "environment": "Production Hybrid Multi-Cloud"
+  },
+  "nodes": [
+    {
+      "id": "AD-USER-JDOE",
+      "label": "jdoe@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": true,
+      "metadata": { "department": "Finance", "enabled": true }
+    },
+    {
+      "id": "AD-USER-contractor01",
+      "label": "contractor01@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": true,
+      "metadata": { "department": "External Vendor", "enabled": true }
+    },
+    {
+      "id": "AD-USER-HELPDESK01",
+      "label": "m.chen@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-GRP-HELPDESK-L1",
+      "label": "HelpDesk-Tier1@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-GRP-IT-OPS",
+      "label": "IT-Infrastructure-Ops@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-SYSADMIN-LEGACY",
+      "label": "r.vance@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-GRP-SERVER-OPERATORS",
+      "label": "Server-Operators-Legacy@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-SVC-BACKUP",
+      "label": "svc-veeam-backup@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-SVC-SQL",
+      "label": "svc-sql-prod@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-SVC-LDAPS",
+      "label": "svc-keycloak-ldap@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-COMP-WS-FIN04",
+      "label": "WS-FIN-04.corp.acme.internal",
+      "kind": "Computer",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-COMP-WS-IT09",
+      "label": "WS-IT-09.corp.acme.internal",
+      "kind": "Computer",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-COMP-APPSRV01",
+      "label": "APPSRV-ERP-01.corp.acme.internal",
+      "kind": "Computer",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-COMP-PKI-SUBCA",
+      "label": "PKI-SUBCA-01.corp.acme.internal",
+      "kind": "Computer",
+      "domain": "ActiveDirectory",
+      "isTierZero": true,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-DC-PRIMARY01",
+      "label": "DC01.corp.acme.internal",
+      "kind": "DomainController",
+      "domain": "ActiveDirectory",
+      "isTierZero": true,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-GRP-DOMAIN-ADMINS",
+      "label": "Domain Admins@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": true,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-GRP-ENTERPRISE-ADMINS",
+      "label": "Enterprise Admins@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": true,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-DA-ADMIN01",
+      "label": "adm-t0-krbtgt-ops@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false,
+      "metadata": { "note": "Legitimate Tier-0 member via Domain Admins" }
+    },
+    {
+      "id": "AD-GRP-GPO-CREATORS",
+      "label": "Group Policy Creator Owners@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-DEVOPS-LEAD",
+      "label": "a.patel@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "LNX-BASTION-01",
+      "label": "ssh-bastion-01.prod.acme.internal",
+      "kind": "Computer",
+      "domain": "LinuxHost",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "LNX-CI-RUNNER-01",
+      "label": "gha-runner-prod-01.prod.acme.internal",
+      "kind": "Computer",
+      "domain": "LinuxHost",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "LNX-ANSIBLE-CTRL",
+      "label": "ansible-tower-01.prod.acme.internal",
+      "kind": "Computer",
+      "domain": "LinuxHost",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "LNX-USER-DEPLOY",
+      "label": "svc-ansible-deploy@prod.acme.internal",
+      "kind": "User",
+      "domain": "LinuxHost",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "K8S-SA-CICD-DEPLOYER",
+      "label": "system:serviceaccount:cicd:cicd-deployer",
+      "kind": "ServiceAccount",
+      "domain": "KubernetesRBAC",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "K8S-POD-TELEMETRY-AGENT",
+      "label": "pod/kube-system/privileged-node-telemetry-ds",
+      "kind": "Pod",
+      "domain": "KubernetesRBAC",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "K8S-POD-BILLING-API",
+      "label": "pod/prod/billing-worker-7f8b9c",
+      "kind": "Pod",
+      "domain": "KubernetesRBAC",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "K8S-SA-BILLING-IRSA",
+      "label": "system:serviceaccount:prod:billing-irsa-sa",
+      "kind": "ServiceAccount",
+      "domain": "KubernetesRBAC",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "K8S-NODE-WORKER-01",
+      "label": "eks-node-ip-10-40-12-88.ec2.internal",
+      "kind": "K8sNode",
+      "domain": "KubernetesRBAC",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "K8S-ROLE-CLUSTER-ADMIN",
+      "label": "clusterrole/cluster-admin",
+      "kind": "ClusterRole",
+      "domain": "KubernetesRBAC",
+      "isTierZero": true,
+      "isCompromised": false
+    },
+    {
+      "id": "AWS-ROLE-EKS-NODE",
+      "label": "arn:aws:iam::998877665544:role/acme-eks-worker-node-role",
+      "kind": "IAMRole",
+      "domain": "CloudIAM",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AWS-ROLE-BILLING-STAGE",
+      "label": "arn:aws:iam::998877665544:role/acme-billing-s3-processor",
+      "kind": "IAMRole",
+      "domain": "CloudIAM",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AWS-ROLE-LAMBDA-PROVISIONER",
+      "label": "arn:aws:iam::998877665544:role/acme-infra-lambda-provisioner",
+      "kind": "IAMRole",
+      "domain": "CloudIAM",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AWS-ROLE-IDENTITY-SYNC",
+      "label": "arn:aws:iam::998877665544:role/acme-ad-direc-sync-operator",
+      "kind": "IAMRole",
+      "domain": "CloudIAM",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AWS-USER-TERRAFORM-CI",
+      "label": "arn:aws:iam::998877665544:user/svc-terraform-pipeline",
+      "kind": "IAMUser",
+      "domain": "CloudIAM",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AWS-ROLE-ORG-ADMIN",
+      "label": "arn:aws:iam::998877665544:role/OrganizationAccountAccessRole",
+      "kind": "IAMRole",
+      "domain": "CloudIAM",
+      "isTierZero": true,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-USER-ISOLATED-AUDITOR",
+      "label": "readonly-auditor@corp.acme.internal",
+      "kind": "User",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    },
+    {
+      "id": "AD-GRP-READONLY-AUDIT",
+      "label": "Audit-Reviewers@corp.acme.internal",
+      "kind": "Group",
+      "domain": "ActiveDirectory",
+      "isTierZero": false,
+      "isCompromised": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "E-001",
+      "source": "AD-USER-DA-ADMIN01",
+      "target": "AD-GRP-DOMAIN-ADMINS",
+      "type": "MemberOf",
+      "description": "Legitimate Tier-0 administrator group membership"
+    },
+    {
+      "id": "E-002",
+      "source": "AD-GRP-DOMAIN-ADMINS",
+      "target": "AD-DC-PRIMARY01",
+      "type": "AdminTo",
+      "description": "Domain Admins hold intrinsic administrative rights on DC01"
+    },
+    {
+      "id": "E-003",
+      "source": "AD-GRP-ENTERPRISE-ADMINS",
+      "target": "AD-DC-PRIMARY01",
+      "type": "DCSync",
+      "description": "Enterprise Admins hold forest-wide replication rights"
+    },
+    {
+      "id": "E-004",
+      "source": "AD-USER-JDOE",
+      "target": "AD-GRP-HELPDESK-L1",
+      "type": "MemberOf",
+      "description": "jdoe is enrolled in HelpDesk-Tier1 for ticket triage"
+    },
+    {
+      "id": "E-005",
+      "source": "AD-USER-HELPDESK01",
+      "target": "AD-GRP-HELPDESK-L1",
+      "type": "MemberOf",
+      "description": "Helpdesk technician group membership"
+    },
+    {
+      "id": "E-006",
+      "source": "AD-GRP-HELPDESK-L1",
+      "target": "AD-USER-SYSADMIN-LEGACY",
+      "type": "GenericWrite",
+      "description": "HelpDesk-Tier1 granted GenericWrite over legacy sysadmin OU objects (Shadow Credentials vector)"
+    },
+    {
+      "id": "E-007",
+      "source": "AD-USER-SYSADMIN-LEGACY",
+      "target": "AD-GRP-SERVER-OPERATORS",
+      "type": "AddMember",
+      "description": "Legacy sysadmin retains WriteProperty(member) on Server-Operators-Legacy group"
+    },
+    {
+      "id": "E-008",
+      "source": "AD-GRP-SERVER-OPERATORS",
+      "target": "AD-USER-SVC-BACKUP",
+      "type": "WriteDacl",
+      "description": "Server-Operators-Legacy holds WriteDacl on Veeam backup service account"
+    },
+    {
+      "id": "E-009",
+      "source": "AD-USER-SVC-BACKUP",
+      "target": "AD-DC-PRIMARY01",
+      "type": "DCSync",
+      "description": "Backup service account granted DS-Replication-Get-Changes-All for AD object recovery"
+    },
+    {
+      "id": "E-010",
+      "source": "AD-USER-JDOE",
+      "target": "AD-COMP-WS-FIN04",
+      "type": "AdminTo",
+      "description": "Local administrator rights left enabled on finance workstation WS-FIN-04"
+    },
+    {
+      "id": "E-011",
+      "source": "AD-COMP-WS-FIN04",
+      "target": "AD-USER-DA-ADMIN01",
+      "type": "HasSession",
+      "description": "Tier-0 admin logged into WS-FIN-04 interactively exposing LSASS ticket material"
+    },
+    {
+      "id": "E-012",
+      "source": "AD-GRP-HELPDESK-L1",
+      "target": "AD-USER-DEVOPS-LEAD",
+      "type": "ForceChangePassword",
+      "description": "HelpDesk-Tier1 holds User-Force-Change-Password over non-protected DevOps Lead account"
+    },
+    {
+      "id": "E-013",
+      "source": "AD-USER-DEVOPS-LEAD",
+      "target": "AD-GRP-IT-OPS",
+      "type": "MemberOf",
+      "description": "DevOps lead is a member of IT-Infrastructure-Ops"
+    },
+    {
+      "id": "E-014",
+      "source": "AD-GRP-IT-OPS",
+      "target": "AD-COMP-WS-IT09",
+      "type": "CanRDP",
+      "description": "IT Ops group permitted RDP access to management jump host WS-IT-09"
+    },
+    {
+      "id": "E-015",
+      "source": "AD-COMP-WS-IT09",
+      "target": "AD-USER-SVC-SQL",
+      "type": "HasSession",
+      "description": "SQL service account token cached on WS-IT-09"
+    },
+    {
+      "id": "E-016",
+      "source": "AD-USER-SVC-SQL",
+      "target": "AD-DC-PRIMARY01",
+      "type": "AllowedToDelegate",
+      "description": "Unconstrained/Constrained Kerberos delegation configured from SQL service account to DC01"
+    },
+    {
+      "id": "E-017",
+      "source": "AD-GRP-IT-OPS",
+      "target": "AD-GRP-GPO-CREATORS",
+      "type": "WriteOwner",
+      "description": "IT-Infrastructure-Ops holds WriteOwner over Group Policy Creator Owners"
+    },
+    {
+      "id": "E-018",
+      "source": "AD-GRP-GPO-CREATORS",
+      "target": "AD-GRP-DOMAIN-ADMINS",
+      "type": "GenericAll",
+      "description": "GPO Creator Owners linked to Tier-0 OU enabling full control over Domain Admins"
+    },
+    {
+      "id": "E-019",
+      "source": "AD-USER-contractor01",
+      "target": "LNX-BASTION-01",
+      "type": "CanRDP",
+      "description": "Contractor permitted xrdp/SSH bastion login on LNX-BASTION-01"
+    },
+    {
+      "id": "E-020",
+      "source": "LNX-BASTION-01",
+      "target": "LNX-USER-DEPLOY",
+      "type": "HasSession",
+      "description": "Unencrypted SSH agent socket for svc-ansible-deploy forwarded onto LNX-BASTION-01"
+    },
+    {
+      "id": "E-021",
+      "source": "LNX-USER-DEPLOY",
+      "target": "LNX-CI-RUNNER-01",
+      "type": "AdminTo",
+      "description": "Ansible deploy user holds passwordless sudo on GitHub Actions production runner"
+    },
+    {
+      "id": "E-022",
+      "source": "LNX-CI-RUNNER-01",
+      "target": "K8S-SA-CICD-DEPLOYER",
+      "type": "HasSession",
+      "description": "Kubeconfig with long-lived cicd-deployer service account token stored on runner disk"
+    },
+    {
+      "id": "E-023",
+      "source": "K8S-SA-CICD-DEPLOYER",
+      "target": "K8S-POD-TELEMETRY-AGENT",
+      "type": "PodExec",
+      "description": "cicd-deployer RBAC RoleBinding permits pods/exec into kube-system daemonset pods"
+    },
+    {
+      "id": "E-024",
+      "source": "K8S-POD-TELEMETRY-AGENT",
+      "target": "K8S-NODE-WORKER-01",
+      "type": "HostPathMount",
+      "description": "Telemetry DaemonSet mounts host /var/lib/kubelet and /etc/kubernetes onto container"
+    },
+    {
+      "id": "E-025",
+      "source": "K8S-NODE-WORKER-01",
+      "target": "K8S-ROLE-CLUSTER-ADMIN",
+      "type": "GenericAll",
+      "description": "Compromised worker node kubelet credentials combined with admission webhook bypass grant cluster-admin control"
+    },
+    {
+      "id": "E-026",
+      "source": "K8S-NODE-WORKER-01",
+      "target": "AWS-ROLE-EKS-NODE",
+      "type": "CanAssumeRole",
+      "description": "IMDSv1 enabled on EKS worker node allows extraction of acme-eks-worker-node-role credentials"
+    },
+    {
+      "id": "E-027",
+      "source": "AWS-ROLE-EKS-NODE",
+      "target": "AWS-ROLE-LAMBDA-PROVISIONER",
+      "type": "PassRole",
+      "description": "Worker node role misconfigured with iam:PassRole to acme-infra-lambda-provisioner"
+    },
+    {
+      "id": "E-028",
+      "source": "AWS-ROLE-LAMBDA-PROVISIONER",
+      "target": "AWS-ROLE-ORG-ADMIN",
+      "type": "CanAssumeRole",
+      "description": "Infra provisioner role trusted by OrganizationAccountAccessRole in root management account"
+    },
+    {
+      "id": "E-029",
+      "source": "K8S-SA-CICD-DEPLOYER",
+      "target": "K8S-POD-BILLING-API",
+      "type": "PodExec",
+      "description": "cicd-deployer can exec into billing worker pod"
+    },
+    {
+      "id": "E-030",
+      "source": "K8S-POD-BILLING-API",
+      "target": "K8S-SA-BILLING-IRSA",
+      "type": "HasSession",
+      "description": "Projected OIDC IRSA web identity token mounted inside billing pod"
+    },
+    {
+      "id": "E-031",
+      "source": "K8S-SA-BILLING-IRSA",
+      "target": "AWS-ROLE-BILLING-STAGE",
+      "type": "CanAssumeRole",
+      "description": "OIDC federated ServiceAccount assumes acme-billing-s3-processor via sts:AssumeRoleWithWebIdentity"
+    },
+    {
+      "id": "E-032",
+      "source": "AWS-ROLE-BILLING-STAGE",
+      "target": "AWS-ROLE-IDENTITY-SYNC",
+      "type": "CanAssumeRole",
+      "description": "Overly permissive AWS Account principal trust policy allows cross-role assumption to identity sync role"
+    },
+    {
+      "id": "E-033",
+      "source": "AWS-ROLE-IDENTITY-SYNC",
+      "target": "AD-USER-SVC-LDAPS",
+      "type": "GenericWrite",
+      "description": "Cloud identity sync role writes credentials for on-prem LDAPS connector account"
+    },
+    {
+      "id": "E-034",
+      "source": "AD-USER-SVC-LDAPS",
+      "target": "AD-COMP-PKI-SUBCA",
+      "type": "WriteDacl",
+      "description": "LDAPS connector holds WriteDacl over Enterprise Subordinate CA computer object (ESC4/ESC7)"
+    },
+    {
+      "id": "E-035",
+      "source": "AD-USER-DEVOPS-LEAD",
+      "target": "LNX-ANSIBLE-CTRL",
+      "type": "AdminTo",
+      "opsecNoise": 95,
+      "description": "DevOps lead has direct SSH root access to Ansible Tower controller (monitored by PAM EDR)"
+    },
+    {
+      "id": "E-036",
+      "source": "LNX-ANSIBLE-CTRL",
+      "target": "AWS-USER-TERRAFORM-CI",
+      "type": "HasSession",
+      "opsecNoise": 95,
+      "description": "Canary-monitored static AWS IAM access keys for svc-terraform-pipeline stored on Ansible controller"
+    },
+    {
+      "id": "E-037",
+      "source": "AWS-USER-TERRAFORM-CI",
+      "target": "AWS-ROLE-LAMBDA-PROVISIONER",
+      "type": "CanAssumeRole",
+      "description": "Terraform CI user permitted to assume acme-infra-lambda-provisioner"
+    },
+    {
+      "id": "E-038",
+      "source": "AD-COMP-APPSRV01",
+      "target": "AD-USER-SVC-BACKUP",
+      "type": "HasSession",
+      "description": "Backup agent service running under svc-veeam-backup context on APPSRV-ERP-01"
+    },
+    {
+      "id": "E-039",
+      "source": "AD-GRP-IT-OPS",
+      "target": "AD-COMP-APPSRV01",
+      "type": "AdminTo",
+      "description": "IT Ops group holds local admin rights on APPSRV-ERP-01"
+    },
+    {
+      "id": "E-040",
+      "source": "AD-USER-SYSADMIN-LEGACY",
+      "target": "AD-USER-HELPDESK01",
+      "type": "GenericWrite",
+      "description": "Bidirectional ACL cycle between legacy sysadmin and helpdesk account (cycle immunity test edge)"
+    },
+    {
+      "id": "E-041",
+      "source": "AD-GRP-SERVER-OPERATORS",
+      "target": "AD-GRP-HELPDESK-L1",
+      "type": "WriteDacl",
+      "description": "3-node directed ACL cycle back to HelpDesk-Tier1 (cycle immunity test edge)"
+    },
+    {
+      "id": "E-042",
+      "source": "AWS-ROLE-IDENTITY-SYNC",
+      "target": "K8S-SA-CICD-DEPLOYER",
+      "type": "GenericWrite",
+      "description": "Cross-cloud cycle back into Kubernetes RBAC service account"
+    },
+    {
+      "id": "E-043",
+      "source": "AD-USER-ISOLATED-AUDITOR",
+      "target": "AD-GRP-READONLY-AUDIT",
+      "type": "MemberOf",
+      "description": "Isolated read-only auditor with zero path to Tier-0"
+    },
+    {
+      "id": "E-044",
+      "source": "AD-USER-HELPDESK01",
+      "target": "AD-COMP-WS-IT09",
+      "type": "CanRDP",
+      "description": "Helpdesk user can RDP directly to IT jump workstation"
+    },
+    {
+      "id": "E-045",
+      "source": "LNX-CI-RUNNER-01",
+      "target": "LNX-ANSIBLE-CTRL",
+      "type": "AdminTo",
+      "opsecNoise": 95,
+      "description": "Noisy root SSH / remote command execution between CI runner and Ansible Tower"
+    },
+    {
+      "id": "E-046",
+      "source": "AD-USER-contractor01",
+      "target": "AD-COMP-WS-FIN04",
+      "type": "CanRDP",
+      "description": "Contractor granted temporary RDP access to finance workstation"
+    },
+    {
+      "id": "E-047",
+      "source": "K8S-SA-BILLING-IRSA",
+      "target": "K8S-POD-TELEMETRY-AGENT",
+      "type": "PodExec",
+      "description": "Excessive namespace wildcard RBAC allows billing SA to exec into telemetry pod"
+    },
+    {
+      "id": "E-048",
+      "source": "AWS-ROLE-BILLING-STAGE",
+      "target": "AWS-ROLE-LAMBDA-PROVISIONER",
+      "type": "PassRole",
+      "description": "Billing staging role holds iam:PassRole to Lambda provisioner"
+    },
+    {
+      "id": "E-049",
+      "source": "AD-USER-SVC-SQL",
+      "target": "AD-COMP-APPSRV01",
+      "type": "AdminTo",
+      "description": "SQL service account over-privileged as local admin on ERP application server"
+    },
+    {
+      "id": "E-050",
+      "source": "AD-USER-SVC-LDAPS",
+      "target": "AD-GRP-SERVER-OPERATORS",
+      "type": "AddMember",
+      "description": "LDAPS service account permitted to modify Server-Operators-Legacy group membership"
+    },
+    {
+      "id": "E-051",
+      "source": "AD-COMP-PKI-SUBCA",
+      "target": "AD-GRP-ENTERPRISE-ADMINS",
+      "type": "GenericAll",
+      "description": "Subordinate CA certificate forging enables immediate Enterprise Admins escalation"
+    },
+    {
+      "id": "E-052",
+      "source": "LNX-USER-DEPLOY",
+      "target": "AD-USER-DEVOPS-LEAD",
+      "type": "HasSession",
+      "description": "DevOps lead cached domain Kerberos ccache in /tmp/krb5cc on Linux deploy context"
+    }
+  ]
+}
